@@ -1,0 +1,70 @@
+import pandas as pd
+import datetime
+import os
+
+# --- Step 1: Define motivational quotes ---
+quotes = [
+    "Believe in yourself and all that you are.",
+    "Every day is a second chance.",
+    "You are stronger than you think.",
+    "Small steps every day lead to big results.",
+    "Dream it. Wish it. Do it.",
+    "Success is not for the lazy.",
+    "Stay positive, work hard, make it happen."
+]
+
+# --- Step 2: Create today's entry ---
+today = datetime.date.today().strftime("%Y-%m-%d")
+quote_of_the_day = quotes[hash(today) % len(quotes)]  # Pick quote based on date
+
+entry = {"Date": [today], "Quote": [quote_of_the_day]}
+
+# --- Step 3: Check if CSV exists and append ---
+file_name = "daily_motivation.csv"
+
+if os.path.exists(file_name):
+    df_existing = pd.read_csv(file_name)
+    df_new = pd.DataFrame(entry)
+    df_combined = pd.concat([df_existing, df_new], ignore_index=True)
+else:
+    df_combined = pd.DataFrame(entry)
+
+# --- Step 4: Save CSV ---
+df_combined.to_csv(file_name, index=False)
+print(f"💾 Daily Motivation for {today} saved to '{file_name}'!")
+print("📘 Quote:", quote_of_the_day)
+
+# --- Step 5 (Optional): Upload to GitHub using API ---
+import requests
+import base64
+
+# Replace with your GitHub details
+GITHUB_TOKEN = "your_personal_access_token"
+USERNAME = "your_github_username"
+REPO = "your_repository_name"
+COMMIT_MESSAGE = f"Added motivation for {today}"
+
+# Read and encode file content
+with open(file_name, "rb") as f:
+    content = f.read()
+encoded_content = base64.b64encode(content).decode("utf-8")
+
+url = f"https://api.github.com/repos/{USERNAME}/{REPO}/contents/{file_name}"
+
+response = requests.put(
+    url,
+    headers={
+        "Authorization": f"token {GITHUB_TOKEN}",
+        "Content-Type": "application/json"
+    },
+    json={
+        "message": COMMIT_MESSAGE,
+        "content": encoded_content
+    }
+)
+
+if response.status_code == 201:
+    print("✅ File uploaded successfully to GitHub!")
+    print("🔗 File URL:", response.json()["content"]["html_url"])
+else:
+    print("❌ Upload failed or file already exists:", response.json())
