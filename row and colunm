@@ -1,0 +1,23 @@
+import pandas as pd
+import numpy as np
+
+# Sample DataFrame
+data = {
+    "name": ["A", "B", "C", "D"],
+    "score": [10, 20, 30, 40],
+    "age": [15, 16, 17, 18]
+}
+df = pd.DataFrame(data, index=["a", "b", "c", "d"])
+
+print("Original DataFrame:")
+print(df)
+
+# Drop row 'b'
+df1 = df.drop("b")
+print("\nAfter dropping row 'b':")
+print(df1)
+
+# Drop column 'age'
+df2 = df.drop("age", axis=1)
+print("\nAfter dropping column 'age':")
+print(df2)
