@@ -1,0 +1,13 @@
+def add(a, b=10):    # default argument
+    return a + b            # return statement
+
+def display_info(*args):  
+# variable-length args
+    for item in args:
+        print(item)
+
+result = add(5)      # calling function
+print("Result:", result)# using return value
+
+display_info("Python", "Functions", 2025)
+
