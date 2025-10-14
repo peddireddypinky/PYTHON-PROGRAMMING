@@ -1,0 +1,83 @@
+# --- Demonstrating Python Data Types ---
+
+# Integer
+age = 20
+
+# Float
+percentage = 85.6
+
+# String
+name = "Veeramanikanta"
+
+# List
+subjects = ["Python", "Data Science", "AI", "ML"]
+
+# Tuple
+grades = (90, 85, 88)
+
+# Set
+unique_ids = {101, 102, 103}
+
+# Dictionary
+student_info = {
+    "name": name,
+    "age": age,
+    "percentage": percentage
+}
+
+# Boolean
+passed = True
+
+# Displaying all data types
+print("Student Information:")
+print(student_info)
+print("Subjects:", subjects)
+print("Grades:", grades)
+print("Unique IDs:", unique_ids)
+print("Passed:", passed)
+print()
+
+# --- Uploading a File to GitHub ---
+
+import requests
+import base64
+
+# Replace with your details
+GITHUB_TOKEN = "your_personal_access_token"
+USERNAME = "your_github_username"
+REPO = "your_repository_name"
+FILE_PATH = "example.txt"
+COMMIT_MESSAGE = "Added example file via Python program"
+
+# Step 1: Create a simple text file
+with open(FILE_PATH, "w") as f:
+    f.write("Hello GitHub! This file was uploaded using Python.\n")
+    f.write("Student Name: " + name + "\n")
+    f.write("Subjects: " + ", ".join(subjects))
+
+# Step 2: Read and encode file content
+with open(FILE_PATH, "rb") as f:
+    content = f.read()
+encoded_content = base64.b64encode(content).decode("utf-8")
+
+# Step 3: Prepare GitHub API URL
+url = f"https://api.github.com/repos/{USERNAME}/{REPO}/contents/{FILE_PATH}"
+
+# Step 4: Send PUT request to upload file
+response = requests.put(
+    url,
+    headers={
+        "Authorization": f"token {GITHUB_TOKEN}",
+        "Content-Type": "application/json"
+    },
+    json={
+        "message": COMMIT_MESSAGE,
+        "content": encoded_content
+    }
+)
+
+# Step 5: Check upload status
+if response.status_code == 201:
+    print("✅ File uploaded successfully to GitHub!")
+else:
+    print("❌ Upload failed:", response.json())
