@@ -1,0 +1,10 @@
+import pandas as pd
+
+# Create a Series
+data = pd.Series([10, 20, 30, 40, 50])
+
+# Convert to list
+python_list = data.tolist()
+
+print("Converted Python List:", python_list)
+print("Type of object:", type(python_list))
