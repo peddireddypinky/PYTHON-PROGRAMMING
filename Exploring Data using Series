@@ -1,0 +1,18 @@
+import pandas as pd
+
+# Create a Series of student marks
+marks = pd.Series([85, 90, 78, 92, 88], index=["Alice", "Bob", "Charlie", "David", "Eva"])
+
+print("Series:")
+print(marks)
+
+# Exploring Data
+print("\nAccessing by index label:", marks["Bob"])     # Access single value
+print("Accessing by position:", marks[2])             # Access using index position
+print("\nMultiple selection:\n", marks[["Alice", "Eva"]])
+
+# Basic statistics
+print("\nMaximum Marks:", marks.max())
+print("Minimum Marks:", marks.min())
+print("Average Marks:", marks.mean())
+print("\nDescribe:\n", marks.describe())
