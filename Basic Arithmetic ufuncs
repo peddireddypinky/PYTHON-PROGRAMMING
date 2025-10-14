@@ -1,0 +1,21 @@
+import numpy as np
+
+
+arr = np.array([1, 2, 3, 4])
+
+
+print("Original Array:", arr)
+print("Add 5:", np.add(arr, 5))   
+# arr + 5
+
+
+print("Multiply by 2:", np.multiply(arr, 2))
+#arr * 2
+
+
+print("Power of 2:", np.power(arr, 2))         
+# arr^2
+
+
+print("Subtract 1:", np.subtract(arr, 1))      
+# arr - 1
