@@ -1,0 +1,38 @@
+import numpy as np
+
+# a) To get help on the add function
+print("Help on np.add function:\n")
+help(np.add)
+
+# b) To test whether none of the elements of a given array is zero
+arr = np.array([1, 2, 3, 4, 5])
+print("\nArray:", arr)
+print("None of the elements is zero:", np.all(arr))   # True if no zero
+
+arr2 = np.array([1, 0, 3, 4])
+print("Array:", arr2)
+print("None of the elements is zero:", np.all(arr2))  # False because 0 is present
+
+# c) Element-wise comparison of two arrays
+x = np.array([1, 2, 3, 4])
+y = np.array([2, 2, 2, 2])
+
+print("\nArray x:", x)
+print("Array y:", y)
+
+print("x > y  :", np.greater(x, y))          # greater
+print("x >= y :", np.greater_equal(x, y))    # greater_equal
+print("x < y  :", np.less(x, y))             # less
+print("x <= y :", np.less_equal(x, y))       # less_equal
+print("x == y :", np.equal(x, y))            # equal
+print("Equal within tolerance:", np.allclose(x, y))   # equal within tolerance
+
+# Using zeros, ones, linspace, tolist
+z = np.zeros((2,2))
+o = np.ones((2,2))
+l = np.linspace(0, 1, 5)   # 5 values between 0 and 1
+print("\nZeros array:\n", z)
+print("Ones array:\n", o)
+print("Linspace 0 to 1 (5 values):", l)
+print("Convert to Python list:", l.tolist())
+
