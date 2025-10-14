@@ -1,0 +1,59 @@
+import pandas as pd
+import requests
+import base64
+
+# --- Step 1: Create a sample DataFrame ---
+data = {
+    "Student_ID": [101, 102, 103, 104],
+    "Name": ["Pinky", "Anu", "Ravi", "Manu"],
+    "Branch": ["CSE", "AI&ML", "Data Science", "IT"],
+    "Marks": [88, 92, 85, 90],
+    "Passed": [True, True, True, True]
+}
+
+df = pd.DataFrame(data)
+print("📘 Student DataFrame created successfully:")
+print(df)
+print()
+
+# --- Step 2: Save DataFrame to a CSV file ---
+file_name = "student_data.csv"
+df.to_csv(file_name, index=False)
+print(f"💾 '{file_name}' saved locally.")
+print()
+
+# --- Step 3: Upload the CSV file to GitHub ---
+
+# Replace these with your details
+GITHUB_TOKEN = "your_personal_access_token"
+USERNAME = "your_github_username"
+REPO = "your_repository_name"
+COMMIT_MESSAGE = "Added student_data.csv using Pandas and Python"
+
+# Read and encode file content
+with open(file_name, "rb") as f:
+    content = f.read()
+encoded_content = base64.b64encode(content).decode("utf-8")
+
+# Prepare GitHub API URL
+url = f"https://api.github.com/repos/{USERNAME}/{REPO}/contents/{file_name}"
+
+# Send PUT request to upload file
+response = requests.put(
+    url,
+    headers={
+        "Authorization": f"token {GITHUB_TOKEN}",
+        "Content-Type": "application/json"
+    },
+    json={
+        "message": COMMIT_MESSAGE,
+        "content": encoded_content
+    }
+)
+
+# --- Step 4: Check upload status ---
+if response.status_code == 201:
+    print("✅ File uploaded successfully to GitHub!")
+    print("🔗 File URL:", response.json()["content"]["html_url"])
+else:
+    print("❌ Upload failed:", response.json())
