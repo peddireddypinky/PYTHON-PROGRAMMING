@@ -1,0 +1,16 @@
+#Example Program: Horizontal Bar Plot 
+import matplotlib.pyplot as plt 
+# Data 
+subjects = ['Math', 'Science', 'English', 
+'Physics', 'Chemistry'] 
+marks = [55, 80, 68, 86, 90] 
+# Create a horizontal bar plot 
+plt.barh(subjects, marks, color='lightyellow', 
+edgecolor='black') 
+# Add title and labels 
+plt.title("Student Marks in Different Subjects",
+          fontsize=13, color='darkviolet')
+plt.xlabel("Marks") 
+plt.ylabel("Subjects") 
+# Display the plot 
+plt.show() 
