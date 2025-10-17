@@ -1,0 +1,13 @@
+#Program: Simple Bar Plot 
+import matplotlib.pyplot as plt 
+# Data 
+months = ['June', 'July', 'Aug', 'Sep', 'Oct'] 
+sales = [200, 230, 300, 250, 400] 
+# Create a simple bar chart 
+plt.bar(months, sales, color='gold', 
+edgecolor='brown') 
+# Add title and labels 
+plt.title("Monthly Sales Report") 
+plt.xlabel("Month") 
+plt.ylabel("Sales (in units)") 
+plt.show()
