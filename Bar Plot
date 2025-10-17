@@ -1,0 +1,16 @@
+# Bar Plot - Monthly Profit 
+import matplotlib.pyplot as plt 
+# Data 
+months = ['Jan', 'Feb', 'Mar', 'Apr', 'May'] 
+sales = [200, 240, 300, 350, 400] 
+profit = [50, 70, 90, 100, 120] 
+plt.figure(figsize=(15, 4)) 
+plt.subplot(1, 3, 3) 
+plt.bar(months, profit, color='pink') 
+plt.title("Monthly Profit Comparison",
+fontsize=13, color='brown') 
+plt.xlabel("Month",fontsize=11, color='green')
+plt.ylabel("Profit",fontsize=11, color='green') 
+# Adjust layout and show plots 
+plt.tight_layout() 
+plt.show() 
