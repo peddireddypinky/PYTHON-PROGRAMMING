@@ -1,0 +1,26 @@
+#Example Program: Customizing a Line Plot 
+import matplotlib.pyplot as plt 
+ 
+# Data 
+months = ['Jan', 'Feb', 'Mar', 'Apr', 'May'] 
+sales = [100, 150, 110, 170, 180] 
+ 
+# Plot with customizations 
+plt.plot(months, sales, 
+         color='green',            
+         linestyle='--',           
+         marker='d',              
+         markerfacecolor='yellow', 
+         linewidth=2)              
+ 
+# Add titles and labels 
+plt.title("Monthly Sales Report (2025)", 
+fontsize=13, color='red') 
+plt.xlabel("Month", fontsize=11) 
+plt.ylabel("Sales in Units", fontsize=11) 
+# Add grid 
+plt.grid(True, linestyle=':', color='gray') 
+# Add legend 
+plt.legend(["Sales Data"], loc='lower right') 
+# Display plot 
+plt.show()
